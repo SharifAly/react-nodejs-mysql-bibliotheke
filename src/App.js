@@ -14,7 +14,28 @@ const App = () => {
     Axios.get("http://localhost:4000/book/all").then((response) => {
       setBookList(response.data);
     });
+  }, [bookList]);
+
+  useEffect(() => {
+    fetchBookData(); // Fetch book data when the component mounts
   }, []);
+
+  const fetchBookData = () => {
+    Axios.get("http://localhost:4000/book/all").then((response) => {
+      setBookList(response.data);
+    });
+  };
+
+  const deleteBook = (id) => {
+    Axios.delete(`http://localhost:4000/book/delete/${id}`)
+      .then(() => {
+        // Book deleted successfully, fetch updated data
+        fetchBookData();
+      })
+      .catch((error) => {
+        console.error("Error deleting book:", error);
+      });
+  };
 
   const submitReview = () => {
     Axios.post("http://localhost:4000/book/insert", {
@@ -23,7 +44,16 @@ const App = () => {
       Cover: Cover,
       Price: Price,
     }).then(() => {
-      setBookList([...bookList, {}]);
+      // Clear the input fields after submission
+      setTitle("");
+      setDescription("");
+      setCover("");
+      setPrice("");
+
+      // Fetch the updated data from the server and update the state
+      Axios.get("http://localhost:4000/book/all").then((response) => {
+        setBookList(response.data);
+      });
     });
   };
 
@@ -34,6 +64,7 @@ const App = () => {
         type="text"
         name=""
         id=""
+        // value={submitReview ? ""}
         onChange={(e) => {
           setTitle(e.target.value);
         }}
@@ -69,17 +100,18 @@ const App = () => {
 
       {bookList.map((val) => {
         return (
-          <>
-            <h1 key={val._id}>Book Title: {val.Title}</h1>
-            <h1 key={val._id}>Book Description: {val.Description}</h1>
-            <h1 key={val._id}>Book Cover: {val.Cover}</h1>
-            <h1 key={val._id}>Book Price: {val.Price}</h1>
+          <div key={val.Book_ID}>
+            <h1>ID: {val.Book_ID}</h1>
+            <h1>Book Title: {val.Title}</h1>
+            <h1>Book Description: {val.Description}</h1>
+            <h1>Book Cover: {val.Cover}</h1>
+            <h1>Book Price: {val.Price}</h1>
             <div>
               <button>Update</button>
-              <button>Delete</button>
+              <button onClick={() => deleteBook(val.Book_ID)}>Delete</button>
             </div>
             _____________________________________________
-          </>
+          </div>
         );
       })}
     </div>
