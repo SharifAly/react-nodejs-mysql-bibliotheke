@@ -1,12 +1,20 @@
 import "./App.css";
 import Axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const App = () => {
   const [Title, setTitle] = useState("");
   const [Description, setDescription] = useState("");
   const [Cover, setCover] = useState("");
   const [Price, setPrice] = useState("");
+
+  const [bookList, setBookList] = useState([]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:4000/book/all").then((response) => {
+      setBookList(response.data);
+    });
+  }, []);
 
   const submitReview = () => {
     Axios.post("http://localhost:4000/book/insert", {
@@ -15,7 +23,7 @@ const App = () => {
       Cover: Cover,
       Price: Price,
     }).then(() => {
-      alert("success");
+      setBookList([...bookList, {}]);
     });
   };
 
@@ -58,6 +66,22 @@ const App = () => {
         }}
       />
       <button onClick={submitReview}>Submit</button>
+
+      {bookList.map((val) => {
+        return (
+          <>
+            <h1 key={val._id}>Book Title: {val.Title}</h1>
+            <h1 key={val._id}>Book Description: {val.Description}</h1>
+            <h1 key={val._id}>Book Cover: {val.Cover}</h1>
+            <h1 key={val._id}>Book Price: {val.Price}</h1>
+            <div>
+              <button>Update</button>
+              <button>Delete</button>
+            </div>
+            _____________________________________________
+          </>
+        );
+      })}
     </div>
   );
 };
