@@ -1,9 +1,20 @@
 import "./App.css";
-import Axios from "axios";
-import { useState, useEffect } from "react";
+import ShowAllBooks from "./components/ShowAllBooks";
+import Navigation from "./components/Navigation";
+import Home from "./components/Home";
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
-  return <div></div>;
+  return (
+    <>
+      <Navigation />
+      <Routes>
+        <Route index element={<Home />} />
+        {/* <ShowAllBooks /> */}
+        <Route path="/books" element={<ShowAllBooks />} />
+      </Routes>
+    </>
+  );
 };
 
 export default App;
