@@ -27,6 +27,20 @@ const Navigation = () => {
             >
               All Books
             </NavLink>
+            <NavLink
+              to="/update"
+              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              activeClassName="bg-gray-900 text-white"
+            >
+              Update Book
+            </NavLink>
+            <NavLink
+              to="/create"
+              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              activeClassName="bg-gray-900 text-white"
+            >
+              New Book
+            </NavLink>
           </div>
         </div>
       </div>

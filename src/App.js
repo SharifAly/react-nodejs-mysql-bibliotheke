@@ -2,6 +2,8 @@ import "./App.css";
 import ShowAllBooks from "./components/ShowAllBooks";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
+import CreateBook from "./components/CreateBook";
+import ChangeBook from "./components/ChangeBook";
 import { Routes, Route } from "react-router-dom";
 
 const App = () => {
@@ -10,7 +12,8 @@ const App = () => {
       <Navigation />
       <Routes>
         <Route index element={<Home />} />
-        {/* <ShowAllBooks /> */}
+        <Route path="/create" element={<CreateBook />} />
+        <Route path="/update" element={<ChangeBook />} />
         <Route path="/books" element={<ShowAllBooks />} />
       </Routes>
     </>
