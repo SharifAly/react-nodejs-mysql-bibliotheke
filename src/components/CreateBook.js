@@ -1,45 +1,58 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+// values to set the data from inputfields
 
 const CreateBook = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [cover, setCover] = useState("");
+  const [values, setValues] = useState({
+    Title: "",
+    Description: "",
+    Cover: "",
+  });
+
+  const navigate = useNavigate();
+
+  // function to handle the data from inputfields
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await Axios.post("http://localhost:8000/books", {
-        title,
-        description,
-        cover,
+    // send data to database
+
+    Axios.post("http://localhost:8000/books", values)
+      .then((res) => {
+        console.log(res);
+        // redirect to homepage
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
       });
-
-      console.log(response.data); // Handle the response data as needed
-    } catch (error) {
-      console.error(error); // Handle any errors that occur during the request
-    }
   };
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          // set new values on change and include the old with spread operator
+          onChange={(e) => setValues({ ...values, Title: e.target.value })}
+          name="Title"
           placeholder="Title"
         />
         <input
           type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          // set new values on change and include the old with spread operator
+          onChange={(e) =>
+            setValues({ ...values, Description: e.target.value })
+          }
+          name="Description"
           placeholder="Description"
         />
         <input
           type="text"
-          value={cover}
-          onChange={(e) => setCover(e.target.value)}
+          // set new values on change and include the old with spread operator
+          onChange={(e) => setValues({ ...values, Cover: e.target.value })}
+          name="Cover"
           placeholder="Cover"
         />
         <button type="submit">Submit</button>
