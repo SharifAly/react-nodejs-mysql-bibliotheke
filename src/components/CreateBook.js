@@ -5,21 +5,24 @@ import { useNavigate } from "react-router-dom";
 // values to set the data from inputfields
 
 const CreateBook = () => {
-  const [values, setValues] = useState({
-    Title: "",
-    Description: "",
-    Cover: "",
-  });
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [file, setFile] = useState(null);
 
   const navigate = useNavigate();
 
   // function to handle the data from inputfields
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const url = "http://localhost:8000/books";
+    const formData = new FormData();
+    formData.append("Title", title);
+    formData.append("Description", desc);
+    formData.append("file", file);
 
     // send data to database
 
-    Axios.post("http://localhost:8000/books", values)
+    Axios.post(url, formData)
       .then((res) => {
         console.log(res);
         // redirect to homepage
@@ -31,28 +34,26 @@ const CreateBook = () => {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input
           type="text"
           // set new values on change and include the old with spread operator
-          onChange={(e) => setValues({ ...values, Title: e.target.value })}
+          onChange={(e) => setTitle(e.target.value)}
           name="Title"
           placeholder="Title"
         />
         <input
           type="text"
           // set new values on change and include the old with spread operator
-          onChange={(e) =>
-            setValues({ ...values, Description: e.target.value })
-          }
+          onChange={(e) => setDesc(e.target.value)}
           name="Description"
           placeholder="Description"
         />
         <input
-          type="text"
+          type="file"
           // set new values on change and include the old with spread operator
-          onChange={(e) => setValues({ ...values, Cover: e.target.value })}
-          name="Cover"
+          onChange={(e) => setFile(e.target.files[0])}
+          name="file"
           placeholder="Cover"
         />
         <button type="submit">Submit</button>

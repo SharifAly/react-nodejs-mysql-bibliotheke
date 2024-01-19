@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import Axios from "axios";
+import img from "../uploads/";
 import { useState, useEffect } from "react";
 
 // Data from database
@@ -33,7 +34,7 @@ const ShowAllBooks = () => {
             </li>
             <li className="text-3xl font-bold">{item.Title}</li>
             <li className="text-3xl font-bold">{item.Description}</li>
-            <img src={item.Cover} alt="" />
+            <img src={img.item.Cover} alt={item.Title} />
           </>
         ))}
       </ul>
