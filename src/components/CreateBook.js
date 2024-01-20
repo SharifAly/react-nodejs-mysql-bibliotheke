@@ -5,9 +5,12 @@ import { useNavigate } from "react-router-dom";
 // values to set the data from inputfields
 
 const CreateBook = () => {
+  // safe the data from input in state
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
+
+  // useNavigate to redirect to after submit
 
   const navigate = useNavigate();
 
@@ -15,6 +18,7 @@ const CreateBook = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = "http://localhost:8000/books";
+    // create formdata
     const formData = new FormData();
     formData.append("Title", title);
     formData.append("Description", desc);
@@ -34,24 +38,25 @@ const CreateBook = () => {
   };
   return (
     <div>
+      {/* encType to use fileupload */}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input
           type="text"
-          // set new values on change and include the old with spread operator
+          // set the title state
           onChange={(e) => setTitle(e.target.value)}
           name="Title"
           placeholder="Title"
         />
         <input
           type="text"
-          // set new values on change and include the old with spread operator
+          // set the desc state
           onChange={(e) => setDesc(e.target.value)}
           name="Description"
           placeholder="Description"
         />
         <input
           type="file"
-          // set new values on change and include the old with spread operator
+          // set the file state
           onChange={(e) => setFile(e.target.files[0])}
           name="file"
           placeholder="Cover"

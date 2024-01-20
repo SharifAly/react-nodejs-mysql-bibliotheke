@@ -9,8 +9,11 @@ import { Routes, Route } from "react-router-dom";
 const App = () => {
   return (
     <>
+      {/* render the navbar */}
       <Navigation />
+      {/* use react router dom to set the routes */}
       <Routes>
+        {/* set the home route as standard route to the homepage */}
         <Route index element={<Home />} />
         <Route path="/create" element={<CreateBook />} />
         <Route path="/update" element={<ChangeBook />} />

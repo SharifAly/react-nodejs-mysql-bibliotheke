@@ -11,6 +11,7 @@ const Navigation = () => {
               My Books DB
             </Link>
           </div>
+          {/* Homepage */}
           <div className="flex">
             <NavLink
               exact
@@ -20,6 +21,7 @@ const Navigation = () => {
             >
               Home
             </NavLink>
+            {/* All Books page*/}
             <NavLink
               to="/books"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -27,6 +29,7 @@ const Navigation = () => {
             >
               All Books
             </NavLink>
+            {/* Update Book page*/}
             <NavLink
               to="/update"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -34,6 +37,7 @@ const Navigation = () => {
             >
               Update Book
             </NavLink>
+            {/* Create Book page*/}
             <NavLink
               to="/create"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"

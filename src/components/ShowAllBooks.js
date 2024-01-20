@@ -3,7 +3,7 @@ import "../App.css";
 import Axios from "axios";
 import { useState, useEffect } from "react";
 
-// Data from database
+// set the data from database to state
 
 const ShowAllBooks = () => {
   const [books, setBooks] = useState([]);
@@ -32,6 +32,7 @@ const ShowAllBooks = () => {
             <li className="text-3xl font-bold">{item.Title}</li>
             <li className="text-3xl font-bold">{item.Description}</li>
             <img
+              // path from express js static folder + picture name from database
               src={`http://localhost:8000/uploads/${item.Cover}`}
               alt={item.Title}
             />

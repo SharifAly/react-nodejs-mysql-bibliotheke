@@ -1,6 +1,10 @@
+/* config for tailwind css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* custom css */
 
 body {
   boxsizing: border-box;
@@ -10,9 +14,4 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }
