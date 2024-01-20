@@ -21,7 +21,20 @@ const ShowAllBooks = () => {
     };
 
     fetchData();
-  }, []);
+  }, [books]);
+
+  // delete function
+
+  const handleDelete = (id) => {
+    // fetch(`http://localhost:8000/books/${id}`, {
+    //   method: "DELETE",
+    // })
+    Axios.delete(`http://localhost:8000/books/${id}`)
+      .then((res) => console.log(res))
+      .then((data) => {
+        console.log(data);
+      });
+  };
   return (
     <div>
       <ul>
@@ -36,6 +49,7 @@ const ShowAllBooks = () => {
               src={`http://localhost:8000/uploads/${item.Cover}`}
               alt={item.Title}
             />
+            <button onClick={() => handleDelete(item.Book_ID)}>Delete</button>
           </div>
         ))}
       </ul>
