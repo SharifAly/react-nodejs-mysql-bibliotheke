@@ -26,7 +26,7 @@ const CreateBook = () => {
       .then((res) => {
         console.log(res);
         // redirect to homepage
-        navigate("/");
+        navigate("/books");
       })
       .catch((err) => {
         console.log(err);

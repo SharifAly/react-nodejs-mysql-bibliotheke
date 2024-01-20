@@ -1,7 +1,6 @@
 import React from "react";
 import "../App.css";
 import Axios from "axios";
-import img from "../uploads/";
 import { useState, useEffect } from "react";
 
 // Data from database
@@ -28,14 +27,15 @@ const ShowAllBooks = () => {
       <ul>
         {/* render the data from database */}
         {books.map((item) => (
-          <>
-            <li className="text-3xl font-bold" key={item.Book_ID}>
-              {item.Book_ID}
-            </li>
+          <div key={item.Book_ID}>
+            <li className="text-3xl font-bold">{item.Book_ID}</li>
             <li className="text-3xl font-bold">{item.Title}</li>
             <li className="text-3xl font-bold">{item.Description}</li>
-            <img src={img.item.Cover} alt={item.Title} />
-          </>
+            <img
+              src={`http://localhost:8000/uploads/${item.Cover}`}
+              alt={item.Title}
+            />
+          </div>
         ))}
       </ul>
     </div>
