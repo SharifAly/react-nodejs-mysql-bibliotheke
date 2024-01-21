@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 import Axios from "axios";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // set the data from database to state
 
@@ -22,6 +23,14 @@ const ShowAllBooks = () => {
 
     fetchData();
   }, [books]);
+
+  // update function
+
+  // const handleUpdate = (id) => {
+  //   Axios.put(`http://localhost:8000/books/${id}`).then((res) => {
+  //     console.log(res);
+  //   });
+  // };
 
   // delete function
 
@@ -50,6 +59,10 @@ const ShowAllBooks = () => {
               alt={item.Title}
             />
             <button onClick={() => handleDelete(item.Book_ID)}>Delete</button>
+
+            <Link to={`/update/${item.Book_ID}`}>
+              <button>Update</button>
+            </Link>
           </div>
         ))}
       </ul>

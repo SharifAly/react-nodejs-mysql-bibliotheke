@@ -16,7 +16,7 @@ const App = () => {
         {/* set the home route as standard route to the homepage */}
         <Route index element={<Home />} />
         <Route path="/create" element={<CreateBook />} />
-        <Route path="/update" element={<ChangeBook />} />
+        <Route path="/update/:id" element={<ChangeBook />} />
         <Route path="/books" element={<ShowAllBooks />} />
       </Routes>
     </>
