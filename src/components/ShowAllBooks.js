@@ -45,27 +45,52 @@ const ShowAllBooks = () => {
       });
   };
   return (
-    <div>
-      <ul>
+    <div className="w-full h-full">
+      <div className="grid grid-cols-3 gap-20 my-10 mt-10">
         {/* render the data from database */}
         {books.map((item) => (
-          <div key={item.Book_ID}>
-            <li className="text-3xl font-bold">{item.Book_ID}</li>
-            <li className="text-3xl font-bold">{item.Title}</li>
-            <li className="text-3xl font-bold">{item.Description}</li>
+          <div
+            key={item.Book_ID}
+            className="flex flex-col justify-center items-center shadow-md rounded-md p-4 bg-white"
+          >
             <img
               // path from express js static folder + picture name from database
               src={`http://localhost:8000/uploads/${item.Cover}`}
               alt={item.Title}
+              className="w-72 rounded-md"
             />
-            <button onClick={() => handleDelete(item.Book_ID)}>Delete</button>
-
-            <Link to={`/update/${item.Book_ID}`}>
-              <button>Update</button>
-            </Link>
+            <table className="auto my-6">
+              <thead>
+                <tr>
+                  <th className="text-center font-bold text-2xl">
+                    {item.Title}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="text-center text-xl w-40">
+                    {item.Description}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div className="flex">
+              <Link to={`/update/${item.Book_ID}`}>
+                <button className="mx-1.5 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ms-5">
+                  Update
+                </button>
+              </Link>
+              <button
+                className="mx-1.5 bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded me-5"
+                onClick={() => handleDelete(item.Book_ID)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

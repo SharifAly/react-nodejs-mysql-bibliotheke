@@ -14,4 +14,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url("./components/pictures/home-background.jpg");
+  background-repeat: none;
+  background-size: cover;
+}
+
+/* hide scrollbar */
+
+body::-webkit-scrollbar {
+  display: none;
 }
