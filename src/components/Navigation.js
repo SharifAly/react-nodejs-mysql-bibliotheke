@@ -10,7 +10,7 @@ const Navigation = () => {
           <div className="flex items-center">
             <img className="w-10 m-6" src={logo} alt="" />
             <Link to="/" className="text-white font-bold text-xl">
-              React Books
+              React Bibliotheke
             </Link>
           </div>
           {/* Homepage */}

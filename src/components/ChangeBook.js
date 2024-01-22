@@ -85,7 +85,7 @@ const ChangeBook = () => {
             </div>
             <div
               key={item.Book_ID}
-              className="flex flex-col justify-center items-center shadow-md rounded-md p-4 bg-white"
+              className="flex flex-col justify-center items-center shadow-md rounded-md p-4 bg-white mt-5"
             >
               <img
                 // path from express js static folder + picture name from database
